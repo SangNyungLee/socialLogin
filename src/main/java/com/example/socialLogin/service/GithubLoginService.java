@@ -49,7 +49,8 @@ public class GithubLoginService {
         data.add("code", code);
         data.add("redirect_uri", redirectUri);
 
-        //REST 템플릿을 사용하여 토큰 요청
+
+
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<JsonNode> response = restTemplate.postForEntity(accessTokenUrl, new HttpEntity<>(data, headers), JsonNode.class);
         JsonNode accessTokenNode = response.getBody();
@@ -61,6 +62,7 @@ public class GithubLoginService {
         //이 주소로 accesstoken값으로 get 요청을 보내서 유저 정보를 받아옴
         String resourceUri = "https://api.github.com/user";
 
+        //RestTemplate =>
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "bearer " + accessToken);
